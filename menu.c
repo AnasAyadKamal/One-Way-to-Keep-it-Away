@@ -6,9 +6,11 @@ void Menu()
 {
     
        if(IsKeyPressed(KEY_A)) currentScreen=GAME1;
-    
+       
      BeginDrawing();
     ClearBackground(BLACK);
+    if(FileExists("You Won.")) DrawCircle(1000,10,10,YELLOW);
+    if(FileExists("Another_Reward_for_ya"))DrawCircle(1000,20,10,YELLOW);
     DrawText("The Only Way To Keep It Away",1,100,40,BLUE);
      DrawText("You are a Loser Who got Exclusive Printed NFTS And",1,250,30,WHITE);
      DrawText("There is a black figure outside your window",1,300,40,WHITE);
@@ -20,6 +22,7 @@ void Menu()
         
     DrawText("Press A to Play",500,550,35,GREEN);
      DrawText("Made By Boxstop For The One Button Game Jam",1,610,5,BLUE);
+     DrawText("v0.1.1",1000,610,5,BLUE);
     EndDrawing();
        
     

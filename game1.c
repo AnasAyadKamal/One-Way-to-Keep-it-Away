@@ -19,7 +19,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         *enemyState+=1;
     *frameCounter=0;
     }
-    printf("\nenemy :%d\n",*enemyState);
+
     if(*timer>0)
     *timer-=1;
     
@@ -29,6 +29,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         {
             if(phase0==1)
             {
+                UnloadTexture(*background);
                 phase4=1;
                  *background=LoadTexture("res/window.png");
                 phase0=0;
@@ -42,6 +43,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         {
             if(phase1==1)
             {
+                 UnloadTexture(*background);
                 phase0==1;
                 *background=LoadTexture("res/window(phase1).png");
                 phase1=0;
@@ -53,6 +55,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         {
              if(phase2==1)
             {
+                 UnloadTexture(*background);
                   phase1=1;
                 *background=LoadTexture("res/window(phase2).png");
                 phase2=0;
@@ -65,6 +68,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         {
              if(phase3==1)
             {
+                 UnloadTexture(*background);
                 phase2=1;
                 *background=LoadTexture("res/window(phase3).png");
                 phase3=0;
@@ -77,6 +81,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         {
              if(phase4==1)
             {
+                 UnloadTexture(*background);
                       phase3=1;
                 *background=LoadTexture("res/window(phase4).png");
                 phase4=0;
@@ -87,7 +92,7 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
         }break;
         case 5:
         {
-            
+             UnloadTexture(*background);
             currentScreen=LOSE;
             *enemyState=0;
             *timer=4000;
@@ -101,7 +106,20 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
     if(*timer<=0)
     {
         currentScreen=WIN;
-        
+        UnloadTexture(*background);
+           *enemyState=0;
+           if(FileExists("You Won."))
+             *lightPower=200;
+            else
+            *lightPower=100;
+            if(FileExists("Another_Reward_for_ya"))
+           *timer=2000;
+            else
+            *timer=4000;
+            if(!FileExists("You Won."))
+             SaveFileText("You Won.","more light power :)");
+             else
+             SaveFileText("Another_Reward_for_ya","less time :)");
     }
     
      if(IsKeyPressed(KEY_A)&&*enemyState!=0&&*lightPower>0)

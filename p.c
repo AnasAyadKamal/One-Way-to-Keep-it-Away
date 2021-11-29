@@ -2,7 +2,8 @@
 This project might get removed from my to do list
 Tho it was fun and very informative of a project
 
-
+update:
+* fixed a huge memory leak 0-0
 
 */
 #include "raylib.h"
@@ -28,11 +29,25 @@ int main(void)
     Texture2D darkness=LoadTexture("res/darkness.png");
     Texture2D lightness=LoadTexture("res/lightinthedarkness.png");
     int enemyState=0;
-    int timer=4000;
+    int timer;
+    int lightPower;
+    if(FileExists("Another_Reward_for_ya"))
+    {
+    timer=2000;
+    }
+    else
+    {
+     timer=4000;
+    }
     //its 4000
     int frameCounter=0;
-    int lightPower=100;
- 
+    if(FileExists("You Won."))
+    {
+    lightPower=200;
+    }
+    else{
+    lightPower=100;
+ }
     SetTargetFPS(60);
  while(!WindowShouldClose())
  {
@@ -65,7 +80,7 @@ int main(void)
  UnloadTexture(background);
  UnloadTexture(darkness);
  UnloadTexture(lightness);
- 
+ CloseAudioDevice();
  CloseWindow();
     
 }
