@@ -37,7 +37,7 @@ int main(void)
     }
     else
     {
-     timer=4000;
+     timer=3900;
     }
     //its 4000
     int frameCounter=0;
@@ -46,7 +46,7 @@ int main(void)
     lightPower=200;
     }
     else{
-    lightPower=100;
+    lightPower=140;
  }
     SetTargetFPS(60);
  while(!WindowShouldClose())

@@ -98,6 +98,15 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
             *timer=4000;
             *lightPower=100;
             SaveFileText("FirstTime?","You lost in your first try didnt you :b"); 
+            if(FileExists("You Won."))
+             *lightPower=200;
+            else
+            *lightPower=120;
+            if(FileExists("Another_Reward_for_ya"))
+           *timer=2000;
+            else
+            *timer=3900;
+        
         }break;
         
         
@@ -111,11 +120,11 @@ void Game1(Texture2D *background,int *enemyState,int *lightPower,Texture2D *dark
            if(FileExists("You Won."))
              *lightPower=200;
             else
-            *lightPower=100;
+            *lightPower=120;
             if(FileExists("Another_Reward_for_ya"))
            *timer=2000;
             else
-            *timer=4000;
+            *timer=3900;
             if(!FileExists("You Won."))
              SaveFileText("You Won.","more light power :)");
              else
